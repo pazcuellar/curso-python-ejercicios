@@ -1,3 +1,7 @@
+from os import system
+def clear_console():
+    system('clear')
+
 f = open('biblioteca.txt')
 canciones = []
 for linea in f:
@@ -13,9 +17,8 @@ for linea in f:
     canciones.append(cancion)
 f.close()
 
-print(len(canciones))
-
 def ver_biblioteca(cancion):
+    clear_console()
     print("*"*20)
     print("ID: ", cancion['id'])
     print("artista: ", cancion['artista'])
@@ -23,8 +26,10 @@ def ver_biblioteca(cancion):
     print("duración: ", cancion['duracion'])
     print("Escuchar ahora: ", cancion['link'])
     print("*"*20)
+    
 
 def ver_cancion_ID(cancion):
+    clear_console()
     print("*"*20)
     print("ID: ", cancion['id'])
     print("artista: ", cancion['artista'])
@@ -37,23 +42,29 @@ def ver_cancion_ID(cancion):
 ## y en uno nuevo
 
 def crear_cancion(ID, canciones):
+    clear_console()
+    cancion = {}
     cancion['id'] = ID
     cancion['artista'] = input("nombre del artista: ")
     cancion['cancion'] = input("nombre de la canción: ")
     cancion['duracion'] = input("duración de la canción: ")
     cancion['link'] = input("link de YouTube: ")
     canciones.append(cancion)
+   
+
+
+## debia agregar un elemento vacio porque estaba en la memoria usando ese nombre de cancion y no se estaba incializando,
+## es bueno que se llame diferente y que además se inicialice
 
 ##porque marca error cuando vuelvo a elegir la opción 1 
 ## después de eliminar una canción con la opción 4?
 
-def eliminar_cancion(cancion):
-    del cancion['id']
-    del cancion['artista']
-    del cancion['cancion']
-    del cancion['duracion']
-    del cancion['link']
+def eliminar_cancion(Xcancion):
+    clear_console()
+    canciones.remove(Xcancion)
     print("Canción eliminada")
+
+##porue estaba eliminando llaves de un elemento de diccionario y no un elemento de diccionario daaa
 
 def mostrar_menu():
     print("{}Menú{}".format("*"*10, "*"*10))
@@ -72,11 +83,13 @@ while opcion_elegida != "5":
     if opcion_elegida == "1":
         for cancion in canciones:
             ver_biblioteca(cancion)
+        input("presione cualquier tecla para continuar")
     elif opcion_elegida == "2":
      Ocancion = input("ID de la canción: ")
      for cancion in canciones:
          if Ocancion == cancion['id']:
              ver_cancion_ID(cancion)   
+     input("presione cualquier tecla para continuar")
     elif opcion_elegida == "3":
         NewID = len(canciones)+1
         Ncancion = len(canciones)-1
@@ -86,6 +99,7 @@ while opcion_elegida != "5":
           for cancion in canciones:
               if Ecancion == cancion['id']:
                   eliminar_cancion(cancion) 
+          input("presione cualquier tecla para continuar")
 
 print ("Bye Bye")
 
