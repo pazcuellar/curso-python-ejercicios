@@ -1,0 +1,1 @@
+# Unidad VII: Análisis exploratorio geoespacial con Geopandasw
